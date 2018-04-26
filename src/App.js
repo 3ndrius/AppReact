@@ -18,7 +18,7 @@ click = () => {
     return (
       <div className="App">
       
-      <p onClick={this.click}> Hello </p>
+      <p onClick={this.click}> Click me </p>
       <p> {this.state.number}</p>
       </div>
     );
