@@ -7,7 +7,7 @@ class Tasks extends Component {
         super(props);
         // this.onInputChange = this.onInputChange.bind(this); adding without es6
         this.state = ({
-            todos: ["Running", "Walking"],
+            todos: [],
             currentList: ""
         });
     }//end of constructor
@@ -16,15 +16,31 @@ class Tasks extends Component {
         this.setState({
             currentList: e.target.value
         });
-    }
-    render() {
-        return(
+    }// end function
+    onClick = () => {
+        let todosCopy = this.state.todos.slice();
+        todosCopy.push(this.state.currentList);
 
-            <div>
+        this.setState({
+            todos: todosCopy, currentList: ""
+        });
+        
+    }//end function
+    render() {
+
+        let allTasks = this.state.todos.map((item,index) => {
+            return(
+                <li key={index}> {item}</li>
+            );
+        });
+        
+        return(
+           <div>
                 <input placeholder="Enter task " value={this.state.currentList} onChange={this.onInputChange}/>
-                <button> Add </button>
+                <button onClick={this.onClick}> Add </button>
                 <br/>
-               {this.state.todos.length === 0 ? " No tasks yet" : "You still have some tasks"}
+               {this.state.todos.length === 0 ? " No tasks yet" : "You still have some tasks"}: 
+               <ul> {allTasks} </ul>
                 
              </div>
         );//end return
