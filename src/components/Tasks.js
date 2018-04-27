@@ -3,14 +3,23 @@ import React, { Component } from 'react';
 
 import SingleTask from './SingleTask';
 
+
+
+
+
 class Tasks extends Component {
 
     constructor(props) {
         super(props);
         // this.onInputChange = this.onInputChange.bind(this); adding without es6
+
+       
         this.state = ({
             todos: [],
-            currentList: ""
+            currentList: "",
+            prod:""
+
+            
         });
     }//end of constructor
 
@@ -23,13 +32,16 @@ class Tasks extends Component {
     onClick = () => {
         let todosCopy = this.state.todos.slice();
         todosCopy.push(this.state.currentList);
-        localStorage.setItem("todo", this.state.currentList);
-
+        
+        
         this.setState({
             todos: todosCopy, currentList: ""
+            
         });
         
+        // localStorage.setItem('item', this.state.todos);
     }//end function
+
 
     deleteTask = (index) =>{
 
@@ -39,6 +51,18 @@ class Tasks extends Component {
             todos:todoCopy
         });
     }
+
+
+    // componentDidMount() {
+    //     console.log("Component mounted");
+    // }
+    // componentWillUpdate() {
+    //     console.log("Component will update");
+    // }
+    // componentDidUpdate() {
+    //     console.log("component updated");
+    // }
+
     render() {
 
         let allTasks = this.state.todos.map((item,index) => {
@@ -53,7 +77,13 @@ class Tasks extends Component {
                 <button onClick={this.onClick}> Add </button>
                 <br/>
                {this.state.todos.length === 0 ? " No tasks yet" : "You still have some tasks"}: 
+               <br/>
+               {this.state.currentList}
                <ul> {allTasks}  </ul>
+               <br/>
+
+               {/* <h1> Witaj: {localStorage.getItem('item')} </h1>
+               <h2> Inner {this.state.todos}</h2> */}
                 
              </div>
         );//end return
