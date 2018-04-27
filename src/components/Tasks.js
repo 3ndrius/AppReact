@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 
+import SingleTask from './SingleTask';
+
 class Tasks extends Component {
 
     constructor(props) {
@@ -26,11 +28,20 @@ class Tasks extends Component {
         });
         
     }//end function
+
+    deleteTask = (item) =>{
+
+        let todoCopy = this.state.todos.slice();
+        todoCopy.splice(item,1);
+        this.setState({
+            todos:todoCopy
+        });
+    }
     render() {
 
         let allTasks = this.state.todos.map((item,index) => {
             return(
-                <li key={index}> {item}</li>
+                <SingleTask todo={item} delete={ () => this.deleteTask(item)}/>
             );
         });
         
@@ -40,7 +51,7 @@ class Tasks extends Component {
                 <button onClick={this.onClick}> Add </button>
                 <br/>
                {this.state.todos.length === 0 ? " No tasks yet" : "You still have some tasks"}: 
-               <ul> {allTasks} </ul>
+               <ul> {allTasks}  </ul>
                 
              </div>
         );//end return
