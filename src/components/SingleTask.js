@@ -5,7 +5,7 @@ class SingleTask extends Component {
 
 render() {
     return(
-        <li> {this.props.todo} <button onClick={this.props.delete}> x </button></li>
+        <li > {this.props.todo} <button onClick={this.props.delete}> x </button></li>
 
     );
 }

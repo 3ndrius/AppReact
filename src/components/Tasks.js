@@ -14,6 +14,7 @@ class Tasks extends Component {
         });
     }//end of constructor
 
+   
     onInputChange = (e) => {
         this.setState({
             currentList: e.target.value
@@ -22,6 +23,7 @@ class Tasks extends Component {
     onClick = () => {
         let todosCopy = this.state.todos.slice();
         todosCopy.push(this.state.currentList);
+        localStorage.setItem("todo", this.state.currentList);
 
         this.setState({
             todos: todosCopy, currentList: ""
@@ -29,10 +31,10 @@ class Tasks extends Component {
         
     }//end function
 
-    deleteTask = (item) =>{
+    deleteTask = (index) =>{
 
         let todoCopy = this.state.todos.slice();
-        todoCopy.splice(item,1);
+        todoCopy.splice(index,1);
         this.setState({
             todos:todoCopy
         });
@@ -41,7 +43,7 @@ class Tasks extends Component {
 
         let allTasks = this.state.todos.map((item,index) => {
             return(
-                <SingleTask todo={item} delete={ () => this.deleteTask(item)}/>
+                <SingleTask todo={item} key={index} delete={ () => this.deleteTask(index)}/>
             );
         });
         
