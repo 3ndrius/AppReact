@@ -33,22 +33,36 @@ class Tasks extends Component {
         let todosCopy = this.state.todos.slice();
         todosCopy.push(this.state.currentList);
         
+        localStorage.setItem('item', this.state.todos);
         
+
         this.setState({
             todos: todosCopy, currentList: ""
+           
             
         });
         
-        // localStorage.setItem('item', this.state.todos);
+
+        
+
     }//end function
 
+    componentDidMount( ) {
+        const zad = localStorage.getItem('item');
+
+        this.setState({
+            prod: zad
+            
+        });
+    }
 
     deleteTask = (index) =>{
-
+       
         let todoCopy = this.state.todos.slice();
         todoCopy.splice(index,1);
         this.setState({
             todos:todoCopy
+        
         });
     }
 
@@ -82,8 +96,10 @@ class Tasks extends Component {
                <ul> {allTasks}  </ul>
                <br/>
 
-               {/* <h1> Witaj: {localStorage.getItem('item')} </h1>
-               <h2> Inner {this.state.todos}</h2> */}
+               <h1> Witaj: {localStorage.getItem('item')} </h1>
+               <h2> Inner {this.state.todos}</h2>
+               <br/>
+               <h2> Prod {this.state.prod}</h2>
                 
              </div>
         );//end return
