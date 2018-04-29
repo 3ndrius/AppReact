@@ -67,15 +67,15 @@ class Tasks extends Component {
     }
 
 
-    // componentDidMount() {
-    //     console.log("Component mounted");
-    // }
-    // componentWillUpdate() {
-    //     console.log("Component will update");
-    // }
-    // componentDidUpdate() {
-    //     console.log("component updated");
-    // }
+    componentDidMount() {
+        console.log("Component mounted");
+    }
+    componentWillUpdate() {
+        console.log("Component will update");
+    }
+    componentDidUpdate() {
+        console.log("component updated");
+    }
 
     render() {
 
